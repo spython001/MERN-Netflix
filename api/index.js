@@ -9,7 +9,21 @@ const listRoute = require("./routes/lists");
 const cors = require("cors");
 
 
+/*const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true, // enable set cookie
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  };
+  
+app.use(cors('*', corsOptions));*/
 app.use(cors());
+// Handle preflight requests
+app.options('*', (req, res) => {
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.status(204).end();
+  });  
+
 dotenv.config();
 
 
